@@ -1,0 +1,14 @@
+/.settings/
+/**/.settings/
+/target/
+/*/target/
+/.project
+/**/.project
+/**/.classpath
+/**/alf_data_dev
+*.log
+*.jar
+.idea
+*.iml
+.DS_Store
+*/.DS_Store
