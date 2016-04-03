@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import it.cosenonjaviste.alfresco.DemoComponent;
+import it.omniagroup.product.rule.JUnitRemoteEndpoint;
 import org.alfresco.model.ContentModel;
 import org.alfresco.repo.security.authentication.AuthenticationUtil;
 import org.alfresco.service.cmr.repository.NodeRef;
@@ -43,7 +44,7 @@ import com.tradeshift.test.remote.RemoteTestRunner;
  */
 
 @RunWith(RemoteTestRunner.class)
-@Remote(runnerClass=SpringJUnit4ClassRunner.class)
+@Remote(runnerClass = SpringJUnit4ClassRunner.class, endpoint = JUnitRemoteEndpoint.URL)
 @ContextConfiguration("classpath:alfresco/application-context.xml")
 public class DemoComponentTest {
     

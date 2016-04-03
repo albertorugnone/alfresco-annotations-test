@@ -2,10 +2,15 @@ package it.cosenonjaviste.alfresco.annotations;
 
 import com.tradeshift.test.remote.Remote;
 import com.tradeshift.test.remote.RemoteTestRunner;
-import it.cosenonjaviste.alfresco.annotations.test.*;
+import it.cosenonjaviste.alfresco.annotations.workflow.ActivitiBean;
+import it.cosenonjaviste.alfresco.annotations.workflow.OnCompleteTaskListener;
+import it.cosenonjaviste.alfresco.annotations.workflow.OnCreateTaskListener;
+import it.cosenonjaviste.alfresco.annotations.workflow.TaskListenerBean;
 import it.omniagroup.product.rule.JUnitRemoteEndpoint;
+import org.activiti.engine.delegate.DelegateTask;
 import org.activiti.engine.delegate.TaskListener;
 import org.alfresco.repo.workflow.activiti.tasklistener.TaskCompleteListener;
+import org.alfresco.repo.workflow.activiti.tasklistener.TaskCreateListener;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,11 +18,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
 import java.util.Map;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
@@ -26,8 +29,37 @@ import static org.junit.Assert.assertNull;
  */
 @RunWith(RemoteTestRunner.class)
 @Remote(runnerClass = SpringJUnit4ClassRunner.class, endpoint = JUnitRemoteEndpoint.URL)
-@ContextConfiguration(classes=TestConfiguration.class, loader=AnnotationConfigContextLoader.class)
+@ContextConfiguration("classpath:alfresco/application-context.xml")
 public class ActivitiBeanIntegrationTest {
+
+    @OnCreateTaskListener
+    static public class TaskCreateListenerToTest extends TaskCreateListener {
+    }
+
+    @ActivitiBean
+    static public class ActivitiBeanToTest {
+    }
+
+    @TaskListenerBean
+    static public class TaskListenerToTest implements TaskListener {
+
+        @Override
+        public void notify(DelegateTask delegateTask) {
+
+        }
+    }
+
+    @OnCompleteTaskListener
+    static public class TaskCompleteListenerToTest extends TaskCompleteListener {
+        @Override
+        public void notify(DelegateTask task) {
+            super.notify(task);
+        }
+    }
+
+
+    static public class ANotActivitiBeanToTest {
+    }
 
     @Autowired
     ApplicationContext context;

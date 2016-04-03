@@ -68,7 +68,7 @@
 				selected Alfresco version/edition (see http://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html#Importing_Dependencies) 
 				NOTE: You still need to define dependencies in your POM, but you can omit 
 				version as it's enforced by this dependencyManagement. NOTE: It defaults 
-				to the latest version this SDK pom has been tested with, but alfresco version 
+				to the latest version this SDK pom has been tested with, but alfresco version
 				can/should be overridden in your project's pom -->
 			<dependency>
 				<groupId>${alfresco.groupId}</groupId>
